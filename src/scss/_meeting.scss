@@ -1,0 +1,359 @@
+.flex-form {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  border: 1px solid $gray-400;
+  border-radius: 2px;
+  background-color: $white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  #edit-actions {
+    margin-top: 1.1rem;
+    margin-left: 0.7rem;
+  }
+}
+
+.form-item {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+table .button {
+  margin: 0rem;
+  padding: calc(0.5rem - 1px) calc(1rem - 1px);
+  font-size: 0.9rem;
+}
+
+/* button styles */
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus,
+.button:focus,
+.button:active:focus,
+.button.active:focus,
+.button.focus,
+.button:active.focus,
+.button.active.focus,
+input:focus,
+input:active:focus,
+input.active:focus,
+input.focus,
+input:active.focus,
+input.active.focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn {
+  display: inline-block;
+  margin: 1rem 0.75rem 1rem 0;
+  padding: calc(1rem - 1px) calc(1.5rem - 1px);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: $gray-900;
+  border: 1px solid transparent !important;
+  border-radius: 2px;
+  background-color: $gray-400;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-font-smoothing: antialiased;
+}
+.btn-sm {
+  padding: calc(0.5rem - 1px) calc(0.5rem - 1px);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Info button styles */
+.btn--info {
+  color: $white;
+  background-color: $info;
+}
+
+.btn--info:hover {
+  color: $white;
+  background-color: $info-hover;
+}
+
+.btn--info:active {
+  background-color: $info-active;
+}
+
+.btn--info:focus {
+  background-color: $info-active;
+}
+
+/* success button styles */
+
+.btn--success {
+  color: $white;
+  background-color: $success;
+}
+
+.btn--success:hover {
+  color: $white;
+  background-color: $success-hover;
+}
+
+.btn--success:active {
+  background-color: $success-active;
+}
+
+/* Primary button styles */
+.btn--primary {
+  color: $white;
+  background-color: $primary;
+}
+
+.btn--primary:hover {
+  color: $white;
+  background-color: $primary-hover;
+}
+
+.btn--primary:active {
+  background-color: $primary-active;
+}
+
+a.btn--primary:hover,
+a.btn--primary:active {
+  color: $white;
+}
+
+/* Danger button styles */
+
+.btn--danger {
+  color: $white;
+  background-color: $danger;
+}
+
+.btn--danger:hover {
+  color: $white;
+  background-color: $danger-hover;
+}
+
+.btn--danger:active {
+  background-color: $danger-active;
+}
+
+a.btn--danger:hover,
+a.btn--danger:active {
+  color: $white;
+}
+
+/* alert */
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: $gray-20;
+  color: $white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: $white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+.alert-danger {
+  background-color: $danger;
+  color: $white;
+}
+.alert-success {
+  background-color: $success;
+  color: $white;
+}
+.alert-info {
+  background-color: $info;
+  color: $white;
+}
+
+.result-message .messages-list {
+  margin-top: 0px;
+}
+.result-message .messages {
+  padding: 1rem 1rem 1rem calc(1.5rem - 0.3125rem);
+}
+
+/*meeting form*/
+#edit-meeting-description-format,
+#edit-description-format,
+#edit-description-format--3,
+#edit-description-format--5 {
+  display: none;
+}
+.meeting-form #ajax-wrapper,
+.meeting-form #ajax-wrapper .form-managed-file__main {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* actions dropdown */
+.action-dropdown {
+  float: left;
+  position: relative;
+}
+.action-link-dropdown {
+  float: left;
+  cursor: pointer;
+  padding: 4.5px;
+  background-color: $gray-50;
+}
+.action-item-dropdown {
+  min-width: 150px;
+  display: none;
+  position: absolute;
+  border-radius: 5px;
+  background: $white;
+  box-shadow: 7px 7px 5px -6px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 7px 10px 5px -6px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 7px 7px 5px -6px rgba(0, 0, 0, 0.08);
+  top: 30px;
+  z-index: 3;
+  border: 1px solid $gray-50;
+  color: $gray-600;
+  overflow: hidden;
+}
+.action-dropdown button,
+.action-dropdown button:active,
+.action-dropdown button:focus,
+.action-dropdown a,
+.action-dropdown a:active,
+.action-dropdown a:focus {
+  background: $white;
+  border: 0px;
+  outline: none;
+  box-shadow: none;
+  font-size: 12px;
+  padding: 10px;
+  cursor: pointer;
+  color: $gray-600;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  float: left;
+}
+.action-dropdown button:hover,
+.action-dropdown a:hover {
+  background: $gray-20;
+}
+.d-flex {
+  display: flex;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.m-auto {
+  margin: auto;
+}
+
+/*custom placeholder*/
+.placeholder .ph-row div,
+.placeholder .ph-picture {
+  background-color: $gray-50;
+}
+.placeholder .ph-item {
+  border: 0px solid $gray-400;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+.placeholder .ph-item > * {
+  margin-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.placeholder .ph-item > * .field {
+  min-height: 3rem;
+}
+.placeholder .ph-item > * .ph-col-1 {
+  width: 5px;
+  display: block;
+}
+
+.template-meeting .cke_contents,
+.meeting-form .cke_contents {
+  min-height: 100px !important;
+  max-height: 100px !important;
+}
+
+.btn-activate-module {
+  position: absolute;
+  right: 0px;
+  top: 6px;
+}
+
+/*table*/
+.template-meeting table thead th {
+  font-size: 0.889rem;
+  padding: 0.5rem;
+}
+
+/**
+ *
+ * Results background image
+ *
+ */
+.box-thumb {
+  div:first-child {
+    width: 100%;
+    min-width: 100%;
+  }
+  div .form-element {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.form-item--meeting-results-background {
+  .file--image {
+    float: left;
+    margin: 10px 0 0 0;
+
+    a {
+      text-decoration: none;
+      color: $gray-500;
+      font-size: 1rem;
+    }
+
+    span {
+      color: $gray-500;
+    }
+  }
+
+  .button {
+    float: right;
+    margin-right: 0;
+    padding: 10px 20px;
+  }
+
+  .form-item__description {
+    float: left;
+    width: 70%;
+    font-size: 0.6rem;
+  }
+}

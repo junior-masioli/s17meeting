@@ -1,0 +1,59 @@
+/*color-circle*/
+.component-color {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100% !important;
+  float: left;
+  background-color: $gray-900;
+  border-radius: 0.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $gray-400;
+
+  &:hover {
+    border-color: $gray-900;
+    box-shadow: inset 0 0 0 1px $gray-900;
+  }
+
+  .box {
+    float: left;
+    width: 3rem;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-50;
+    border-top-left-radius: 0.125rem;
+    border-bottom-left-radius: 0.125rem;
+  }
+
+  span {
+    float: left;
+    width: calc(100% - 3rem);
+    background-color: $white;
+    height: 45px;
+    border-top-right-radius: 0.125rem;
+    border-bottom-right-radius: 0.125rem;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .color-circle {
+    float: left;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50px;
+    overflow: hidden;
+
+    [type="color"] {
+      border: 0;
+      padding: 0;
+      width: 200%;
+      height: 200%;
+      cursor: pointer;
+      transform: translate(-25%, -25%);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+meeting.admin:
+  title: 'Meetings'
+  description: 'example of how to make an admin settings page link'
+  parent: admin
+  menu_name: admin
+  route_name: meeting.display_data
+  weight: 100

@@ -1,0 +1,57 @@
+<div class="row template-meeting">
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+		{{ meeting }}
+	</div>
+
+	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+		<div id="tabs">
+			<main>
+				<input id="tab1" type="radio" name="tabs" class="radio__tab" checked>
+
+				<label class="label__tab" for="tab1">Poll</label>
+
+
+				<input id="tab2" type="radio" name="tabs" class="radio__tab">
+
+				<label class="label__tab" for="tab2">Questions</label>
+
+
+				<input id="tab3" type="radio" name="tabs" class="radio__tab">
+
+				<label class="label__tab" for="tab3">Survey</label>
+
+
+				<input id="tab4" type="radio" name="tabs" class="radio__tab">
+
+				<label class="label__tab" for="tab4">Info</label>
+
+
+				<section id="content1">
+					{{ poll }}
+					<div id="display_poll">
+						{{ polls }}
+					</div>
+				</section>
+
+				<section id="content2">
+					{{ question }}
+					<div id="display_question">
+						{{ questions }}
+					</div>
+				</section>
+
+				<section id="content3">
+					{{ survey }}
+				</section>
+
+				<section id="content4">
+					{{ info }}
+
+				</section>
+			</main>
+
+		</div>
+	</div>
+
+</div>
+

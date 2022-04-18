@@ -1,0 +1,21 @@
+name: Meeting
+description: This is my new module for Drupal 9
+package: Custom
+type: module
+core_version_requirement: ^9
+
+regions:
+  branding: Branding
+  navigation: Main navigation
+  search: Search
+  featured: Featured
+  content: Content
+  right_sidebar: Right sidebar
+  footer_first: Footer First
+  footer_second: Footer Second
+  footer_third: Footer Third
+  footer_bottom: Footer Bottom
+
+ckeditor_stylesheets:
+  - css/theme/ckeditor-frame.css
+  - css/components/text-content.css

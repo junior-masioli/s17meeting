@@ -1,0 +1,176 @@
+meeting.display_data:
+  path: "/admin/meetings"
+  defaults:
+    _title: "Meetings"
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingController::index'
+  requirements:
+     _access: 'TRUE'
+
+meeting.add_form:
+  path: "/admin/meeting/add"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingCreateController::index'
+    _title: "Add Meeting"
+  requirements:
+    _permission: 'access content'
+
+meeting.edit_form:
+  path: "/admin/meeting/{id}/edit"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingEditController::index'
+    _title: "Edit Meeting"
+  requirements:
+    _permission: 'access content'
+
+meeting.show_data:
+  path: '/admin/meeting/{id}/show'
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Meeting\ShowDataController::show'
+    _title: 'Show Meeting'
+  requirements:
+    _permission: 'access content'
+
+meeting.delete_form:
+  path: '/admin/meeting/{id}/delete'
+  defaults:
+    _form: '\Drupal\meeting\Form\Meeting\DeleteForm'
+    _title: 'Delete Meeting'
+  requirements:
+    _access: 'TRUE'
+
+meeting.activate_module:
+  path: "/admin/meeting/module/activate"
+  defaults:
+    _title: "Activate module"
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingActivateModuleController::activate'
+  requirements:
+     _access: 'TRUE'
+
+meeting_modal.modal:
+  path: 'admin/meeting/modal'
+  defaults:
+    _title: 'Modal'
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingModalController::modal'
+  requirements:
+    _permission: 'access content'
+
+meeting_alert.alert:
+  path: 'admin/meeting/alert'
+  defaults:
+    _title: 'Alert'
+    _controller: '\Drupal\meeting\Controller\Meeting\MeetingAlertController::alert'
+  requirements:
+    _permission: 'access content'
+
+meeting.poll_form:
+  path: "/admin/meeting/{id}/poll"
+  defaults:
+    _form: '\Drupal\meeting\Form\Poll\MeetingPollForm'
+    _title: "Polls"
+  requirements:
+    _permission: 'access content'
+
+meeting.poll_display_data:
+  path: "/meeting/{id}/{ajax}/poll/list"
+  defaults:
+    _title: "Polls"
+    _controller: '\Drupal\meeting\Controller\Poll\PollController::get'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_delete:
+  path: "/admin/meeting/{id}/poll/delete"
+  defaults:
+    _title: "Polls"
+    _controller: '\Drupal\meeting\Controller\Poll\PollController::delete'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_allow:
+  path: "/admin/meeting/poll/allow"
+  defaults:
+    _title: "Polls"
+    _controller: '\Drupal\meeting\Controller\Poll\PollAllowController::update'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_poll_control:
+  path: "/admin/meeting/poll/display"
+  defaults:
+    _title: "Polls"
+    _controller: '\Drupal\meeting\Controller\Poll\PollControlController::update'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_result_controll:
+  path: "/admin/meeting/poll/result"
+  defaults:
+    _title: "Polls"
+    _controller: '\Drupal\meeting\Controller\Poll\PollResultControlController::update'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_answer_form:
+  path: "/admin/meeting/{id}/poll/answer"
+  defaults:
+    _form: '\Drupal\meeting\Form\PollAnswer\MeetingPollAnswerForm'
+    _title: "Poll Answers"
+  requirements:
+    _permission: 'access content'
+
+meeting.poll_answer_modal:
+  path: "/admin/meeting/{id}/poll/answer/modal"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\PollAnswer\PollAnswerModalController::index'
+    _title: "Poll Answers"
+  requirements:
+    _permission: 'access content'
+
+meeting.poll_answer_display_data:
+  path: "/admin/meeting/poll/answer/{id}/{ajax}/list"
+  defaults:
+    _title: "Poll Answers"
+    _controller: '\Drupal\meeting\Controller\PollAnswer\PollAnswerController::get'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_answer_delete:
+  path: "/admin/meeting/poll/answer/delete"
+  defaults:
+    _title: "Poll Answer Delete"
+    _controller: '\Drupal\meeting\Controller\PollAnswer\PollAnswerController::delete'
+  requirements:
+     _access: 'TRUE'
+
+meeting.question_form:
+  path: "/admin/meeting/{id}/question"
+  defaults:
+    _form: '\Drupal\meeting\Form\Question\MeetingQuestionForm'
+    _title: "Questions"
+  requirements:
+    _permission: 'access content'
+
+meeting.question_update:
+  path: "/admin/meeting/question/update"
+  defaults:
+    _title: "Questions"
+    _controller: '\Drupal\meeting\Controller\Question\QuestionController::update'
+  requirements:
+     _access: 'TRUE'
+
+meeting.survey_form:
+  path: "/admin/meeting/{id}/survey"
+  defaults:
+    _form: '\Drupal\meeting\Form\Question\MeetingSurveyForm'
+    _title: "Surveys"
+  requirements:
+    _permission: 'access content'
+
+meeting.info_form:
+  path: "/admin/meeting/{id}/info"
+  defaults:
+    _form: '\Drupal\meeting\Form\Info\MeetingInfoForm'
+    _title: "Infos"
+  requirements:
+    _permission: 'access content'
+

@@ -1,0 +1,15 @@
+#display_poll {
+    table {
+        tbody {
+            tr {
+                text-align: center;
+                & .text-left {
+                    text-align: center;
+                }
+                & .action-dropdown-wrapper {
+                    display: flex;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+global-styling:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/style.min.css: {}
+      css/feather.css: {}
+      css/placeholder-loading.min.css: {}
+
+
+global-javascript:
+  version: 1.x
+  header: true
+  js:
+    js/js-min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
