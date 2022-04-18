@@ -40,3 +40,7 @@ create a custom editor: admin/config/content/formats
 --Machine name: meeting_html_editor
 --Important: Active toolbar configs[screenshot]
 ```
+[![S17](https://raw.githubusercontent.com/junior-masioli/s17meeting/main/print_editor.png)](https://github.com/S17team)
+
+### Author
+Junior Masioli junior@solution17.co.uk Copyright (c) 2022 - Solution17
