@@ -1,87 +1,75 @@
-
 /**
  *
  * Tabs
  *
  */
 
-
 #tabs {
-  main {
-    min-width: 100%;
-    max-width: 100%;
-    padding: 20px 0px;
-    margin: 0 auto;
-    background: $white;
-  }
-
-  section {
-    display: none;
-    padding: 13px 0 20px 0;
-    border-top: 1px solid $gray-200;
-  }
-
-  input {
-    &.radio__tab {
-      display: none;
+    main {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 20px 0px;
+        margin: 0 auto;
+        background: $white;
     }
-
-    &:checked + label.label__tab {
-      color: #000;
-      border: 1px solid $gray-200;
-      border-top: 2px solid $primary;
-      border-bottom: 1px solid $white;
-
-      &.disabled {
-        border-top: 2px solid $gray-400;
-        color: $gray-400;
-      }
+    section {
+        display: none;
+        padding: 5px 0 20px 0;
+        border-top: 1px solid $gray-200;
     }
-  }
-
-  label {
-    &.label__tab {
-      display: inline-block;
-      margin: 0 0 -1px;
-      padding: 15px 25px;
-      font-weight: 600;
-      text-align: center;
-      color: $gray-400;
-      border: 1px solid transparent;
-      font-size: 0.889rem;
+    input {
+        &.radio__tab {
+            display: none;
+        }
+        &:checked+label.label__tab {
+            color: #000;
+            border: 1px solid $gray-200;
+            border-top: 2px solid $primary;
+            border-bottom: 1px solid $white;
+            &.disabled {
+                border-top: 2px solid $gray-400;
+                color: $gray-400;
+            }
+        }
     }
-
-    &:hover {
-      color: $gray-500;
-      cursor: pointer;
+    label {
+        &.label__tab {
+            display: inline-block;
+            margin: 0 0 -1px;
+            padding: 15px 25px;
+            font-weight: 600;
+            text-align: center;
+            color: $gray-400;
+            border: 1px solid transparent;
+            font-size: 0.889rem;
+        }
+        &:hover {
+            color: $gray-500;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 650px) {
+            &.label__tab {
+                font-size: 0;
+            }
+        }
+        @media screen and (max-width: 400px) {
+            &.label__tab {
+                padding: 15px;
+            }
+        }
+        &.disabled {
+            color: $gray-400;
+            opacity: 0.5;
+            &:hover {
+                cursor: default;
+                color: $gray-400;
+            }
+        }
     }
-
-    @media screen and (max-width: 650px) {
-      &.label__tab {
-        font-size: 0;
-      }
+    @for $i from 1 through 4 {
+        #tab#{$i}:checked~#content#{$i} {
+            display: block;
+            position: relative;
+        }
     }
-
-    @media screen and (max-width: 400px) {
-      &.label__tab {
-        padding: 15px;
-      }
-    }
-
-    &.disabled {
-      color: $gray-400;
-      opacity: 0.5;
-      &:hover {
-        cursor: default;
-        color: $gray-400;
-      }
-    }
-  }
-
-  @for $i from 1 through 4 {
-    #tab#{$i}:checked ~ #content#{$i} {
-      display: block;
-      position: relative;
-    }
-  }
 }

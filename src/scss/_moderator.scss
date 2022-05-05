@@ -1,0 +1,168 @@
+.question-moderator {
+    h2 {
+        border-bottom: 1px solid $gray-200;
+        padding-bottom: 5px;
+    }
+    .col-question {
+        h3 {
+            background-color: $gray-200;
+            border: 1px solid $gray-300;
+            border-radius: 5px;
+            margin: 0px 0px 10px 0px;
+            padding: 5px;
+            font-size: 14px;
+        }
+        ul {
+            background-color: #fff;
+            border: 1px solid $gray-200;
+            border-radius: 5px;
+            margin: 0px;
+            padding: 10px;
+            li {
+                display: grid;
+                grid-template-columns: 1fr 90px;
+                list-style: none;
+                margin-bottom: 15px;
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+                .col-left {
+                    display: flex;
+                    width: 95%;
+                    height: 100%;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    align-items: stretch;
+                    & .textarea {
+                        border: 1px solid $gray-200;
+                        width: 100%;
+                        height: auto;
+                        min-height: 40px;
+                        background-color: transparent;
+                        font-size: 13px;
+                        padding: 10px;
+                        &:focus {
+                            outline: none;
+                        }
+                        &:last-child {
+                            margin-bottom: 0px;
+                        }
+                    }
+                    .actions {
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 0px;
+                        & button {
+                            display: block;
+                            border: 1px solid $success-active;
+                            padding: 2px;
+                            width: 80px;
+                            max-width: 80px;
+                            min-width: 80px;
+                            min-height: 20px;
+                            border-radius: 30px;
+                            font-size: 13px;
+                            background-color: #fff;
+                            color: $success-active;
+                            transition: all 0.2s;
+                            &:hover {
+                                background-color: $success-hover;
+                                color: #fff;
+                            }
+                            &.cancel {
+                                border: 1px solid $danger;
+                                color: $danger;
+                                margin-right: 10px;
+                                &:hover {
+                                    background-color: $danger;
+                                    color: #fff;
+                                }
+                            }
+                            &:disabled {
+                                border: 1px solid $gray-100;
+                                color: $gray-100;
+                                &:hover {
+                                    background-color: #fff;
+                                    border: 1px solid $gray-100;
+                                    color: $gray-100;
+                                }
+                            }
+                        }
+                    }
+                }
+                .col-right {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    align-items: center;
+                    & button {
+                        display: block;
+                        border: 0px;
+                        padding: 2px;
+                        width: 80px;
+                        max-width: 80px;
+                        min-width: 80px;
+                        min-height: 24px;
+                        border-radius: 30px;
+                        font-size: 13px;
+                        background-color: $success;
+                        color: #fff;
+                        transition: all 0.2s;
+                        &:hover {
+                            background-color: $success-hover;
+                        }
+                        &.archive {
+                            background-color: $danger;
+                            &:hover {
+                                background-color: $danger-hover;
+                            }
+                        }
+                    }
+                }
+            }
+            li.border-bottom-1 {
+                border-bottom: 1px solid $gray-200;
+                &:last-child {
+                    border-bottom: 0px;
+                }
+            }
+            li.no-results {
+                text-align: center;
+                font-size: 13px;
+                display: block;
+                width: 100%;
+            }
+            li.full {
+                display: grid;
+                grid-template-columns: 1fr;
+                list-style: none;
+                margin-bottom: 15px;
+                &:last-child {
+                    margin-bottom: 0px;
+                }
+                .col-left {
+                    display: flex;
+                    width: 95%;
+                    height: 100%;
+                    justify-content: space-between;
+                    flex-direction: column;
+                    align-items: stretch;
+                    & .textarea {
+                        border: 0px solid $gray-200;
+                        width: 100%;
+                        height: auto;
+                        min-height: 40px;
+                        background-color: transparent;
+                        font-size: 13px;
+                        padding: 10px;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

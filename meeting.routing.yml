@@ -142,6 +142,23 @@ meeting.poll_answer_delete:
   requirements:
      _access: 'TRUE'
 
+
+meeting.poll_display_results:
+  path: "/admin/meeting/poll/{id}/results"
+  defaults:
+    _title: "Poll Results"
+    _controller: '\Drupal\meeting\Controller\Poll\PollResultController::index'
+  requirements:
+     _access: 'TRUE'
+
+meeting.poll_display_result_votes:
+  path: "/admin/meeting/poll/{id}/result/votes"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Poll\PollResultController::get'
+  requirements:
+     _access: 'TRUE'     
+
+
 meeting.question_form:
   path: "/admin/meeting/{id}/question"
   defaults:
@@ -155,6 +172,48 @@ meeting.question_update:
   defaults:
     _title: "Questions"
     _controller: '\Drupal\meeting\Controller\Question\QuestionController::update'
+  requirements:
+     _access: 'TRUE'
+
+
+meeting.question_display_data:
+  path: "/admin/meeting/question/{id}/{ajax}/list"
+  defaults:
+    _title: "Questions"
+    _controller: '\Drupal\meeting\Controller\Question\QuestionController::get'
+  requirements:
+     _access: 'TRUE'
+
+
+meeting.question_moderator:
+  path: "/admin/meeting/{uuid}/questions/moderator"
+  defaults:
+    _title: "Questions moderator"
+    _controller: '\Drupal\meeting\Controller\Moderator\ModeratorController::index'
+  requirements:
+     _access: 'TRUE'
+
+meeting.question_speaker:
+  path: "/admin/meeting/{uuid}/questions/speaker"
+  defaults:
+    _title: "Questions speaker"
+    _controller: '\Drupal\meeting\Controller\Moderator\ModeratorController::speaker'
+  requirements:
+     _access: 'TRUE'
+
+meeting.question_moderator_json:
+  path: "/admin/meeting/{uuid}/questions/moderator/json"
+  defaults:
+    _title: "Questions moderator json"
+    _controller: '\Drupal\meeting\Controller\Moderator\ModeratorController::get'
+  requirements:
+     _access: 'TRUE'
+
+meeting.question_moderator_update_question:
+  path: "/admin/meeting/moderator/question/update"
+  defaults:
+    _title: "Questions moderator update"
+    _controller: '\Drupal\meeting\Controller\Moderator\ModeratorController::update'
   requirements:
      _access: 'TRUE'
 
@@ -174,3 +233,33 @@ meeting.info_form:
   requirements:
     _permission: 'access content'
 
+
+#api
+meeting.poll_api:
+  path: "/api/meeting/{uuid}/polls"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Api\PollController::get'
+  requirements:
+     _access: 'TRUE'
+
+meeting.meeting_api:
+  path: "/api/meeting/{uuid}/meeting"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Api\MeetingController::get'
+  requirements:
+     _access: 'TRUE'
+     
+meeting.meeting_question_api:
+  path: "/api/meeting/question"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Api\MeetingController::postQuestion'
+  requirements:
+     _access: 'TRUE'
+
+
+meeting.meeting_poll_vote_api:
+  path: "/api/meeting/poll/vote"
+  defaults:
+    _controller: '\Drupal\meeting\Controller\Api\PollController::postPollVote'
+  requirements:
+     _access: 'TRUE'

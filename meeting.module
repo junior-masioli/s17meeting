@@ -12,6 +12,7 @@ function meeting_theme($existing, $type, $theme, $path)
       '#attached' => [
         'library' => [
           'meeting/global-styling',
+          'meeting/socket_io',
           'meeting/global-javascript',
         ],
       ],
@@ -30,16 +31,18 @@ function meeting_theme($existing, $type, $theme, $path)
       '#attached' => [
         'library' => [
           'meeting/global-styling',
+          'meeting/socket_io',
           'meeting/global-javascript',
         ],
       ]
     ),
     'answer_template' => array(
       'variables' => array('form' => NULL, 'answers' => NULL),
-      'template' => 'html--admin--aswer--modal',
+      'template' => 'html--admin--answer--modal',
       '#attached' => [
         'library' => [
           'meeting/global-styling',
+          'meeting/socket_io',
           'meeting/global-javascript',
         ],
       ]
@@ -52,9 +55,41 @@ function meeting_theme($existing, $type, $theme, $path)
       'template' => 'thumb-upload',
       'render element' => 'element',
     ),
+    'question_moderator' => array(
+      'template' => 'question-moderator-template',
+      'variables' => array('meeting' => NULL, 'questions' => NULL),
+      '#attached' => [
+        'library' => [
+          'meeting/global-styling',
+          'meeting/socket_io',
+          'meeting/global-javascript',
+        ],
+      ],
+    ),
+    'question_speaker' => array(
+      'template' => 'question-speaker-template',
+      'variables' => array('meeting' => NULL, 'questions' => NULL),
+      '#attached' => [
+        'library' => [
+          'meeting/global-styling',
+          'meeting/socket_io',
+          'meeting/global-javascript',
+        ],
+      ],
+    ),
+    'poll_result_questions' => array(
+      'template' => 'poll-result-template',
+      'variables' => array('poll' => NULL, 'questions' => NULL, 'meeting' => NULL),
+      '#attached' => [
+        'library' => [
+          'meeting/global-styling',
+          'meeting/socket_io',
+          'meeting/global-javascript',
+        ],
+      ],
+    ),
   );
 }
-
 
 
 function meeting_preprocess_inputcolour_form(&$variables)
@@ -76,6 +111,7 @@ function meeting_preprocess_inputcolour_form(&$variables)
 function meeting_page_attachments(array &$attachments)
 {
   $attachments['#attached']['library'][] = 'meeting/global-styling';
+  $attachments['#attached']['library'][] = 'meeting/socket_io';
   $attachments['#attached']['library'][] = 'meeting/global-javascript';
 }
 
@@ -126,6 +162,12 @@ function meeting_schema()
         'type' => 'serial',
         'unsigned' => TRUE,
         'not null' => TRUE,
+      ),
+      'uuid' => array(
+        'type' => 'char',
+        'length' => 36,
+        'not null' => TRUE,
+        'default' => '',
       ),
       'meeting_name' => array(
         'type' => 'varchar',
@@ -276,6 +318,49 @@ function meeting_schema()
     ),
   );
 
+  $schema['poll_answer_user'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'meeting_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'poll_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'poll_answer_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'user_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'user_name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array(
+      'id',
+    ),
+  );
+
   $schema['question'] = array(
     'fields' => array(
       'id' => array(
@@ -306,7 +391,7 @@ function meeting_schema()
     ),
   );
 
-  $schema['question_item'] = array(
+  $schema['question_submission'] = array(
     'fields' => array(
       'id' => array(
         'type' => 'serial',
@@ -549,6 +634,79 @@ function meeting_install()
     )
   );
 
+
+  $database->schema()->changeField(
+    'poll_answer_user',
+    'meeting_id',
+    'meeting_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+    ),
+    array(
+      'foreign keys' => array(
+        'meeting_id' => array(
+          'table' => 'meeting',
+          'columns' => array(
+            'id' => 'id',
+          ),
+          'on update' => 'cascade',
+          'on delete' => 'set null',
+        )
+      ),
+    )
+  );
+
+  $database->schema()->changeField(
+    'poll_answer_user',
+    'poll_id',
+    'poll_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+    ),
+    array(
+      'foreign keys' => array(
+        'poll_id' => array(
+          'table' => 'poll',
+          'columns' => array(
+            'id' => 'id',
+          ),
+          'on update' => 'cascade',
+          'on delete' => 'set null',
+        )
+      ),
+    )
+  );
+
+  $database->schema()->changeField(
+    'poll_answer_user',
+    'poll_answer_id',
+    'poll_answer_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+    ),
+    array(
+      'foreign keys' => array(
+        'poll_answer_id' => array(
+          'table' => 'poll',
+          'columns' => array(
+            'id' => 'id',
+          ),
+          'on update' => 'cascade',
+          'on delete' => 'set null',
+        )
+      ),
+    )
+  );
+
   $database->schema()->changeField(
     'question',
     'meeting_id',
@@ -573,7 +731,7 @@ function meeting_install()
     )
   );
   $database->schema()->changeField(
-    'question_item',
+    'question_submission',
     'meeting_id',
     'meeting_id',
     array(
@@ -597,7 +755,7 @@ function meeting_install()
   );
 
   $database->schema()->changeField(
-    'question_item',
+    'question_submission',
     'question_id',
     'question_id',
     array(

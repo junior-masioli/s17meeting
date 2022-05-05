@@ -7,12 +7,17 @@ global-styling:
       css/feather.css: {}
       css/placeholder-loading.min.css: {}
 
-
-global-javascript:
+socket_io:
   version: 1.x
   header: true
   js:
-    js/js-min.js: {}
+    https://cdn.socket.io/4.4.0/socket.io.min.js: { attributes: { integrity: 'sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj', crossorigin: 'anonymous' } } 
+
+global-javascript:
+  version: 1.x
+  header: false
+  js:
+    js/js-min.js: { attributes: { defer: true } }
   dependencies:
     - core/jquery
     - core/drupal

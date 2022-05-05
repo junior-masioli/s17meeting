@@ -11,12 +11,18 @@ use Drupal\Core\Controller\ControllerBase;
 
 class MeetingAlertController extends ControllerBase
 {
+    public function alert($type = 'alert-success', $text)
+    {
+        $btnClose = "<span class='closebtn'>&times;</span>";
+        $alert =
+            '<div class="alert ' .
+            $type .
+            '">' .
+            $text .
+            ' ' .
+            $btnClose .
+            '</div>';
 
-  public static function alert($type="alert-success", $text)
-  {
-    $btnClose = "<span class='closebtn'>&times;</span>";
-    $alert = '<div class="alert ' . $type . '">'.$text. ' ' . $btnClose . '</div>';
-
-    return $alert;
-  }
+        return $alert;
+    }
 }

@@ -1,0 +1,14 @@
+<div class="row poll-result" style="background:url({{meeting['background']|e}})">
+    <div class="poll-id" data-id="{{ poll['id']|e}}"></div>
+    <div class="meeting-shadow-colour" data-colour="{{ meeting['meeting_results_shadow_colour']|e}}"></div>
+    <div class="meeting-bar-colour" data-colour="{{ meeting['meeting_results_bar_colour']|e}}"></div>
+	
+	<div class="poll-result-content">
+		   <h2>{{ poll['poll_question']|e}}</h2>
+			<div class="col-md-12">
+				<ul id="poll_results"> </ul>
+			</div>
+	</div>
+
+</div>
+

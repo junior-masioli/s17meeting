@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/**
+** Custom CSS for S17 Meeting
+*/
+
+.meeting {
+    position: relative;
+    top: -20px;
+}
+
+.meeting-fullscreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+}
+
+.meeting .block {
+    display: block;
+}
+
+.meeting .meeting__sidebar {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    max-width: 100%;
+    top: 0px;
+}
+
+.meeting .meeting__sidebar-fullscreen {
+    height: 100vh;
+}
+
+.meeting .meeting__sidebar .alert-message {
+    font-size: 12px;
+    color: #2196F3;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+    float: left;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.meeting .meeting__sidebar .alert-message svg {
+    stroke: #2196F3;
+    float: left;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    position: relative;
+    top: -1px;
+}
+
+
+/**
+** Left section of the meeting
+* Video and iframe
+*/
+
+.meeting .meeting__sidebar__left .meeting__sidebar__left--video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.meeting .meeting__sidebar__left .meeting__sidebar__left--video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/**
+** right section of the meeting
+*/
+
+.meeting .meeting__sidebar__right {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.meeting .meeting__sidebar__right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90px;
+    height: 60px;
+    border-right: 1px solid #e6e6e6;
+    font-size: 0.70rem;
+    color: #666;
+    position: relative;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li .bullet {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #ff0000;
+    top: 11px;
+    right: 27px;
+    border-radius: 50px;
+    animation: move 3s ease;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes move {
+    0% {
+        transform-origin: bottom top;
+        transform: scale(1);
+        background-color: #db0808;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+        background-color: #ff0000;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #db0808;
+    }
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.active {
+    color: #000;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li svg {
+    margin-bottom: 2px;
+    stroke: #666;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.active svg {
+    margin-bottom: 2px;
+    stroke: #000;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li:last-child {
+    border-right: none;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content {
+    display: block;
+    padding: 0px 20px;
+    margin: 0px;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__title,
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .question__title {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .tab {
+    display: none;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .tab.tab-active {
+    display: block;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+}
+
+
+/*
+** Custom checkbox button
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox {
+    font-size: 0.80rem;
+    line-height: 1.3rem;
+    font-weight: 400;
+    position: relative;
+    padding-left: 25px;
+    margin: 10px 0px;
+    display: block;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox .check-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 1%;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox:hover input~.check-mark {
+    background-color: #ccc;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox input:checked~.check-mark {
+    background-color: #2196F3;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox .check-mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox input:checked~.check-mark:after {
+    display: block;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.checkbox .check-mark:after {
+    left: 7px;
+    top: 5px;
+    width: 5px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/*
+** End Custom checkbox button
+*/
+
+
+/*
+** Custom radio button
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio {
+    font-size: 0.80rem;
+    line-height: 1.3rem;
+    font-weight: 400;
+    position: relative;
+    padding-left: 25px;
+    margin: 10px 0px;
+    display: block;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio .check-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio:hover input~.check-mark {
+    background-color: #ccc;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio input:checked~.check-mark {
+    background-color: #2196F3;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio .check-mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio input:checked~.check-mark:after {
+    display: block;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__questions label.radio .check-mark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+/*
+** End Custom radio button
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .poll__submit,
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .question__submit,
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .survey__link {
+    display: block;
+    width: 100%;
+    margin: 15px 0px;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .btn,
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .link {
+    display: block;
+    width: 100%;
+    margin: 0px;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: #fff;
+    background-color: #666;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .btn:disabled {
+    opacity: 0.2;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .link {
+    margin: 20px 0px;
+}
+
+
+/*
+** Questions
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .question__questions {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .question__questions textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    outline: none;
+    padding: 5px;
+    border: 1px solid #919297;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 20px 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/*
+** Survey
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .survey {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .survey .survey__content {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    line-height: 1.25rem;
+    font-size: 0.875rem;
+    margin: 20px 0px;
+}
+
+
+/*
+** Info
+*/
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .info {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.meeting .meeting__sidebar__right .meeting__sidebar__right--content .info .info__content {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    line-height: 1.25rem;
+    font-size: 0.875rem;
+    margin: 20px 0px;
+}
+
+
+/*Animation fade out*/
+
+.meeting .poll-form-elements {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.1s, opacity 1s;
+}
+
+.meeting .fade-out {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.btn-close-sidebar {
+    display: none;
+}
+
+.meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.btn-open-fullscreen {
+    display: none;
+}
+
+
+/* Desktop */
+
+@media screen and (min-width: 980px) {
+    .meeting .meeting__sidebar {
+        display: grid;
+        background: #fff;
+        grid-template-columns: 1fr 400px;
+        font-family: 'Roboto', sans-serif;
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .meeting .meeting__sidebar__right {
+        display: flex;
+        transition: 1s ease-in-out;
+    }
+    .meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu {
+        flex-direction: column;
+        border-left: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+        position: relative;
+    }
+    .meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li {
+        border-right: 0px solid #e6e6e6;
+        cursor: pointer;
+    }
+    .meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.btn-close-sidebar {
+        flex-direction: row-reverse;
+        height: 30px;
+        margin-top: 5px;
+        display: none;
+    }
+    .meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.btn-close-sidebar svg {
+        width: 20px;
+        height: 20px;
+    }
+    .meeting .meeting__sidebar__right ul.meeting__sidebar__right--menu li.btn-open-fullscreen {
+        position: absolute;
+        bottom: 5px;
+        display: flex;
+    }
+    .meeting .meeting__sidebar__right .meeting__sidebar__right--content {
+        display: block;
+        width: 100%;
+        padding: 20px;
+    }
+    .meeting .meeting__sidebar_closed {
+        grid-template-columns: 1fr 90px;
+    }
+    .meeting .meeting__sidebar_closed .meeting__sidebar__right--content {
+        display: none;
+    }
+}

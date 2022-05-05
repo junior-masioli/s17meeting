@@ -1,0 +1,18 @@
+<div class="row question-moderator">
+    <div class="question-meeting-uuid" data-uuid="{{ meeting['uuid']|e}}"></div>
+    <div class="col-md-12"><h2>{{ meeting['meeting_name']|e}}</h2></div>
+	<div class="col-md-4 col-question new-question">
+        <h3>QUESTIONS</h3>
+		<ul id="question_new"></ul>
+	</div>
+	<div class="col-md-4 col-question approved-question">
+        <h3>APPROVED</h3>
+		<ul id="question_approved"></ul>
+	</div>
+	<div class="col-md-4 col-question archived-question">
+        <h3>ARCHIVED</h3>
+		<ul id="question_archived"></ul>
+	</div>
+
+</div>
+

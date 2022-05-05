@@ -5,6 +5,10 @@
      */
     Drupal.behaviors.meeting = {
         attach: function(context, settings) {
+            const websocketUrl = "https://s-17-websocket-x682q.ondigitalocean.app";
+
+            socket = io(websocketUrl);
+
             // Get all elements with class="closebtn"
             var close = document.getElementsByClassName("closebtn");
             var i;
@@ -36,8 +40,6 @@
         }
     };
 
-
-
     /**
      *
      * Activate Meeting Module
@@ -63,6 +65,7 @@
 
     //stop propagation form
     $(document).ready(function() {
+
         $(".action_ajax").click(function(e) {
             e.preventDefault();
         });

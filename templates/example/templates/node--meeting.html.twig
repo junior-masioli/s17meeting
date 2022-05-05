@@ -1,0 +1,354 @@
+<div {{attributes}}>
+	<div class="meeting" x-data="$store.getContent">
+		<div class="meeting__sidebar">
+			<div class="meeting__sidebar__left">
+				<div class="meeting__sidebar__left--video" x-init="$store.getContent.getVideoUrl()">
+						<iframe width="560" height="315" :src="video_url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+			</div>
+			<div class="meeting__sidebar__right"  x-data="selectTab()">
+				<ul class="meeting__sidebar__right--menu" id="meeting__sidebar__right_menu" 
+					x-data="{ displayBullet:false}"
+					x-init="$store.getContent.checkIfMenuIsEnabled()"
+				>	
+		
+				
+					<li class="btn-close-sidebar">
+						Close
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M18 6L6 18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M6 6L18 18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+
+
+					</li>
+					<template x-if="menuPoll">
+						<li class="tab_poll" :class="{ 'active': tab === 'poll'}" @click="displayTab('poll'); toggleBullet()">
+							<span id="bullet" class="bullet hidden"></span>
+							<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M21.21 15.89C20.5739 17.3945 19.5788 18.7202 18.3119 19.7513C17.045 20.7824 15.5448 21.4874 13.9425 21.8048C12.3401 22.1221 10.6845 22.0421 9.12018 21.5718C7.55591 21.1014 6.13066 20.2551 4.96906 19.1066C3.80745 17.9582 2.94485 16.5427 2.45667 14.9839C1.96849 13.4251 1.8696 11.7705 2.16863 10.1646C2.46767 8.55877 3.15553 7.05061 4.17208 5.77202C5.18863 4.49342 6.50292 3.4833 8.00004 2.82999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2V12H22Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+							Poll 
+						</li>
+					</template>
+					<template x-if="menuQuestion">
+						<li class="tab_question" :class=" { 'active': tab === 'question' || !menuPoll}" @click="displayTab('question')">
+							<svg width="25" height="25" viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M21.2668 12.1436C21.2703 13.4635 20.9619 14.7655 20.3668 15.9436C19.6613 17.3553 18.5766 18.5428 17.2343 19.3729C15.892 20.203 14.3451 20.643 12.7668 20.6436C11.447 20.647 10.145 20.3387 8.96685 19.7436L3.26685 21.6436L5.16685 15.9436C4.57178 14.7655 4.2634 13.4635 4.26685 12.1436C4.26746 10.5653 4.70746 9.01843 5.53756 7.67613C6.36767 6.33383 7.5551 5.24915 8.96685 4.54358C10.145 3.94851 11.447 3.64014 12.7668 3.64358H13.2668C15.3512 3.75857 17.3199 4.63834 18.796 6.11444C20.2721 7.59054 21.1519 9.55924 21.2668 11.6436V12.1436Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+
+							Question</li>
+					</template>
+					<template x-if="menuSurvey">
+						<li class="tab_survey" :class="{ 'active': tab === 'survey' || !menuPoll && !menuQuestion }" @click="displayTab('survey')">
+							<svg width="25" height="25" viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14.2668 2.64359H6.26685C5.73641 2.64359 5.2277 2.8543 4.85263 3.22937C4.47756 3.60444 4.26685 4.11315 4.26685 4.64359V20.6436C4.26685 21.174 4.47756 21.6827 4.85263 22.0578C5.2277 22.4329 5.73641 22.6436 6.26685 22.6436H18.2668C18.7973 22.6436 19.306 22.4329 19.6811 22.0578C20.0561 21.6827 20.2668 21.174 20.2668 20.6436V8.64359L14.2668 2.64359Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M14.2668 2.64359V8.64359H20.2668" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M16.2668 13.6436H8.26685" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M16.2668 17.6436H8.26685" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M10.2668 9.64359H9.26685H8.26685" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+
+							Survey</li>
+					</template>
+					<template x-if="menuInfo">
+						<li class="tab_info" :class="{ 'active': tab === 'info' ||  !menuPoll && !menuQuestion && !menuSurvey  }" @click="displayTab('info')">
+							<svg width="25" height="25" viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M8.12685 2.64359H16.4068L22.2668 8.50359V16.7836L16.4068 22.6436H8.12685L2.26685 16.7836V8.50359L8.12685 2.64359Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M12.2668 8.64359V12.6436" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M12.2668 16.6436H12.2768" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+
+							Info</li>
+					</template>
+
+					<li class="btn-open-fullscreen">
+							<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 16V19.6C1 20.2365 1.25286 20.847 1.70294 21.2971C2.15303 21.7471 2.76348 22 3.4 22H7"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M15 22L19.2 22C19.9426 22 20.6548 21.7471 21.1799 21.2971C21.705 20.847 22 20.2365 22 19.6L22 16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M22 7L22 3.4C22 2.76348 21.705 2.15303 21.1799 1.70294C20.6548 1.25286 19.9426 1 19.2 1L15 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M7 1L3.4 1C2.76348 1 2.15303 1.25286 1.70294 1.70294C1.25286 2.15303 0.999999 2.76348 0.999999 3.4L1 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+							Fullscreen
+						</li>
+				</ul>
+				<div class="meeting__sidebar__right--content">
+					<template x-if="menuPoll">
+						<div class="poll tab" :class="{ 'tab-active': tab === 'poll' }" x-data="getPoll()" x-init="fetchPoll()">
+							<button class="hidden" id="reloadPoll" @click="fetchPoll()"></button>
+							<h2>Take part in our poll</h2>
+							<template x-if="polls">
+								<template x-for="poll in polls.data" :key="poll.poll_id" >
+										
+										<template  x-if="!poll.poll_answer_count">
+											<form action="#" method="post" class="poll-form"  x-data="PollForm();" @submit.prevent="submitForm">
+												<div class="alert-message mt-2" x-show="formMessage">
+													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+														<path d="M22 4L12 14.01L9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+													</svg>
+
+													Thank you. Your answer was successfully submitted
+												</div>
+												<div class="poll-form-elements" :id="`form_${poll.poll_id}`">
+												<div class="poll__title" x-text="poll.poll_question"></div>
+												<div class="poll__questions">
+													<ul>
+														<template x-if="poll.poll_allow_multiple_choice == 0">
+															
+																<template x-for="poll_answer in poll.poll_answer" :key="poll_answer.id">
+																	<li x-data="{poll_opt: '', poll_id: poll.id, poll_allow_multiple_choice: poll.poll_allow_multiple_choice}">
+																		<label :for="poll_answer.id" class="radio">
+																			<input @change="formData.poll_opt = poll_opt; formData.poll_id = poll.poll_id; formData.poll_allow_multiple_choice = poll.poll_allow_multiple_choice"  type="radio" :value="poll_answer.id" :id="poll_answer.id" x-model="poll_opt">
+																			<span class="check-mark"></span>
+																			<small x-text="poll_answer.answer"></small>
+																		</label>
+																	</li>
+																</template>
+						
+														</template>
+														<template x-if="poll.poll_allow_multiple_choice  == 1" x-data="{ poll_opt: [], poll_id: poll.poll_id, poll_allow_multiple_choice: poll.poll_allow_multiple_choice }">
+															
+																<template x-for="poll_answer in poll.poll_answer" :key="poll_answer.id">
+																	<li >
+																		<label :for="poll_answer.id" class="checkbox">
+																			<input @change="formData.poll_opt = poll_opt.join(', '); formData.poll_id = poll.poll_id; formData.poll_allow_multiple_choice = poll.poll_allow_multiple_choice" type="checkbox" :value="poll_answer.id" :id="poll_answer.id" x-model="poll_opt">
+																			<span class="check-mark"></span>
+																			<small x-text="poll_answer.answer"></small>
+																		</label>
+																	</li>
+																</template>
+													
+														</template>
+													</ul>
+												</div>
+												<div class="poll__submit">
+													<button type="submit" class="btn" x-bind:disabled="!formData.poll_opt">Vote</button>
+												</div>
+												</div>
+											</form>
+										</template>
+								</template>
+							</template>
+							<template x-if="polls">
+								<template x-for="poll in polls.data" :key="poll.poll_id" >
+									<template  x-if="poll.poll_answer_count">
+										<div class="alert-message mt-2">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M22 4L12 14.01L9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+
+											Thank you. Your answer was successfully submitted
+										</div>
+										</template>
+								</template>
+							</template>
+						</div>
+					</template>
+					<div  x-init="$store.getContent.fetchMeeting()">
+						<template x-if="menuQuestion">
+							<div class="question tab" :class="{ 'tab-active': tab === 'question' || !menuPoll}">
+									<h2 x-text="question ? question.title : ''"></h2>
+									<div class="question__title" x-html="question ? question.description : ''"></div>
+									<form action="#" method="post" class="question-form" x-data="QuestionForm()" @submit.prevent="submitForm">
+										<div class="alert-message" x-show="formMessage">
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+												<path d="M22 4L12 14.01L9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+
+											Thank you. Your answer was successfully submitted
+										</div>
+										<input type="hidden" x-model="formData.meeting_uuid" >
+
+										<div class="question__questions">
+											<textarea x-model="formData.question" name="question" id="question" rows="10" placeholder="Type your question here…"></textarea>
+										</div>
+										<div class="question__submit">
+											<button type="submit" class="btn" :disabled="!formData.question.length">Send</button>
+										</div>
+									</form>
+							
+							</div>
+						</template>
+						<template x-if="menuSurvey">
+							<div class="survey tab" :class="{ 'tab-active': tab === 'survey' || !menuPoll && !menuQuestion}">
+								<template x-if="survey">
+									<h2 x-text="survey.title"></h2>
+								</template>
+								<template x-if="survey">
+									<div class="survey__content" x-html="survey.description"></div>
+								</template>
+
+								<template x-if="survey">
+									<div class="survey__link">
+										<a :href="survey.url" target="_blank" class="link">Go to Survey</a>
+									</div>
+								</template>
+							</div>
+						</template>
+						<template x-if="menuInfo">
+							<div class="info tab" :class="{ 'tab-active': tab === 'info' || !menuPoll && !menuQuestion && !menuSurvey}">
+								<template x-if="info">
+									<h2 x-text="info.title"></h2>
+								</template>
+
+								<template x-if="info">
+									<div class="info__content" x-html="info.description"></div>
+								</template>
+							</div>
+						</template>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script
+  src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+  integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj"
+  crossorigin="anonymous"
+></script>
+<script>
+	var socket = io("https://s-17-websocket-x682q.ondigitalocean.app");
+	var MEETING_ID = "{{node.field_meeting_uuid.value}}";
+	var room = "Room_" + MEETING_ID;
+	var username = "Username_" + MEETING_ID;
+
+	function selectTab() {
+        return {
+        tab: 'poll',
+            displayTab(tab) {
+                this.tab = tab;
+            }
+        }
+    }
+    function getPoll() {
+        return {
+            isLoading: false,
+            polls: null,
+            poll_opt: '',
+            fetchPoll() {
+                this.isLoading = true;
+                fetch(`/api/meeting/{{node.field_meeting_uuid.value}}/polls`).then(res => res.json()).then(data => {
+                    this.isLoading = false;
+                    this.polls = data;
+                });
+            }
+        }
+    }
+
+	function QuestionForm() {
+      return {
+        formData: {
+          question: "",
+          meeting_uuid: "{{node.field_meeting_uuid.value}}"
+        },
+		formMessage: "",
+		submitForm($dispatch) {
+			this.formMessage = "";
+			 fetch(`/api/meeting/question`, {
+				method: "POST",
+				headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				},
+				body: JSON.stringify(this.formData),
+			}).then(() => {
+				this.formData.question = "";
+				this.formMessage = "Form successfully submitted.";
+
+				setTimeout(() => {
+					this.formMessage = "";
+				} , 2000);
+
+				
+				$dispatch(emitDataQuestion("Room_" + this.formData.meeting_uuid, "Username_" + this.formData.meeting_uuid, "question"))
+            }).catch(() => {
+              	this.formMessage = "Something went wrong.";
+            });
+        },
+      };
+    }
+
+	function PollForm() {
+      return {
+        formData: {
+          poll_opt: "",
+          poll_id: "",
+          poll_allow_multiple_choice: "",
+          meeting_uuid: "{{node.field_meeting_uuid.value}}",
+        },
+		formMessage: "",
+		submitForm() {
+			this.formMessage = "";
+			 fetch(`/api/meeting/poll/vote`, {
+				method: "POST",
+				headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				},
+				body: JSON.stringify(this.formData),
+			}).then(() => {
+				this.formData.question = "";
+				const el = document.getElementById('form_'+this.formData.poll_id);
+				el.classList.add("fade-out");
+
+				this.formMessage = "Form successfully submitted.";
+				setTimeout(() => {this.formMessage = "";} , 3000);
+            }).catch(() => {
+              	this.formMessage = "Something went wrong.";
+            });
+			
+        }
+      };
+    }
+
+	//socket io
+	   
+	   //get data
+		
+		//dispatch user and room
+		socket.emit(
+			"select_room", {
+				username,
+				room,
+			},
+			(messages) => {
+				messages.forEach((message) => createMessage(message));
+			}
+		);
+
+		//RefreshPoll
+		socket.on("sidebar", function(data) {
+			let {text} = data;
+			var el = document.getElementById('bullet');
+			if(text == "RefreshPoll"){
+				el.classList.remove('hidden');
+			}else{
+				el.classList.add('hidden');
+			}
+			document.getElementById('reloadPoll').click();
+		});
+
+		//emita data
+		function emitDataQuestion(room, username, message){
+			const data = {
+				room,
+				username,
+				message,
+			};
+
+			socket.emit("question", data);
+		}
+
+		function toggleBullet(){
+			var el = document.getElementById('bullet');
+			if(!el.classList.contains('hidden')){
+					el.classList.add('hidden');
+			}
+		}
+</script>
