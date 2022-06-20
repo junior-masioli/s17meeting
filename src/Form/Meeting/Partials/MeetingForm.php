@@ -182,12 +182,28 @@ class MeetingForm
             ],
         ];
 
-        $form['meeting_status'] = [
-            '#type' => 'checkbox',
-            '#title' => 'Published',
-            '#default_value' => isset($data['meeting_status'])
-                ? $data['meeting_status']
-                : '',
+        $form['fields']['box']['box-thumb-banner'] = [
+            '#type' => 'container',
+            '#attributes' => ['class' => 'row box-thumb-banner'],
+            '#open' => true,
+        ];
+
+        $form['fields']['box']['box-thumb-banner']['mobile_banner_image'] = [
+            '#title' => 'Mobile banner image',
+            '#description' => 'Choose Image gif png jpg jpeg',
+            '#type' => 'managed_image',
+            '#default_value' => isset($data['banner_fid'])
+                ? [$data['banner_fid']]
+                : [],
+            '#upload_location' => 'public://images/',
+            '#wrapper_attributes' => [
+                'class' => 'col-xs-12 col-sm-12 col-md-12 col-lg-12',
+            ],
+            '#attributes' => ['class' => ['col-full']],
+            '#image_style' => 'wide',
+            '#upload_validators' => [
+                'file_validate_extensions' => ['gif png jpg jpeg'],
+            ],
         ];
 
         // $form['embed_link'] = [
@@ -222,7 +238,27 @@ class MeetingForm
                     'target' => '_blank',
                 ],
             ];
+
+            $form['mobile_view_link'] = [
+                '#title' => 'Mobile standalone link',
+                '#type' => 'link',
+                '#url' => Url::fromRoute('meeting.question_speaker', [
+                    'uuid' => $data['uuid'],
+                ]),
+                '#attributes' => [
+                    'class' => ['embed-link margin-b-15'],
+                    'target' => '_blank',
+                ],
+            ];
         }
+
+        $form['meeting_status'] = [
+            '#type' => 'checkbox',
+            '#title' => 'Published',
+            '#default_value' => isset($data['meeting_status'])
+                ? $data['meeting_status']
+                : '',
+        ];
 
         $form['submit'] = [
             '#type' => 'submit',

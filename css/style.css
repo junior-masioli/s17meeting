@@ -1561,7 +1561,7 @@ a.embed-link,
 a.embed-link:hover,
 a.embed-link:active {
   background-color: #f9f9f9;
-  width: 100%;
+  width: 95%;
   display: inline-block;
   padding: 10px;
   text-decoration: none;
@@ -1759,42 +1759,55 @@ a.embed-link:active {
  * Results background image
  *
  */
-.box-thumb div:first-child {
+.box-thumb,
+.box-thumb-banner {
+  margin-bottom: 8px;
+}
+.box-thumb div:first-child,
+.box-thumb-banner div:first-child {
   width: 100%;
   min-width: 100%;
 }
-.box-thumb div .form-element {
+.box-thumb div .form-element,
+.box-thumb-banner div .form-element {
   width: 100%;
   min-width: 100%;
 }
 
-.form-item--meeting-results-background .file--image {
+.form-item--meeting-results-background .file--image,
+.form-item--mobile-banner-image .file--image {
   float: left;
   margin: 10px 0 0 0;
 }
-.form-item--meeting-results-background .file--image a {
+.form-item--meeting-results-background .file--image a,
+.form-item--mobile-banner-image .file--image a {
   text-decoration: none;
   color: #8e929c;
   font-size: 1rem;
 }
-.form-item--meeting-results-background .file--image span {
+.form-item--meeting-results-background .file--image span,
+.form-item--mobile-banner-image .file--image span {
   color: #8e929c;
 }
-.form-item--meeting-results-background .button {
+.form-item--meeting-results-background .button,
+.form-item--mobile-banner-image .button {
   float: right;
   margin-right: 0;
   padding: 10px 20px;
 }
-.form-item--meeting-results-background .form-item__description {
+.form-item--meeting-results-background .form-item__description,
+.form-item--mobile-banner-image .form-item__description {
   float: left;
   width: 70%;
   font-size: 0.6rem;
 }
 
-.js-form-item-meeting-results-background .image-preview {
-  margin-bottom: 20px;
+.js-form-item-meeting-results-background .image-preview,
+.js-form-item-mobile-banner-image .image-preview {
+  margin-bottom: 5px;
 }
-.js-form-item-meeting-results-background .form-submit {
+.js-form-item-meeting-results-background .form-submit,
+.js-form-item-mobile-banner-image .form-submit {
   height: 31px;
   min-height: 31px;
   max-height: 31px;
@@ -1883,6 +1896,10 @@ a.embed-link:active {
   position: relative;
 }
 #tabs #tab4:checked ~ #content4 {
+  display: block;
+  position: relative;
+}
+#tabs #tab5:checked ~ #content5 {
   display: block;
   position: relative;
 }

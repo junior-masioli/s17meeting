@@ -233,6 +233,13 @@ meeting.info_form:
   requirements:
     _permission: 'access content'
 
+meeting.mobile_form:
+  path: "/admin/meeting/{id}/mobile"
+  defaults:
+    _form: '\Drupal\meeting\Form\Mobile\MeetingMobileForm'
+    _title: "Mobile"
+  requirements:
+    _permission: 'access content'
 
 #api
 meeting.poll_api:

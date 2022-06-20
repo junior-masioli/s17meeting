@@ -61,6 +61,7 @@ class MeetingCreateForm extends FormBase
     {
         //get picture id
         $picture = $form_state->getValue('meeting_results_background');
+        $picture_banner = $form_state->getValue('mobile_banner_image');
 
         //array data to insert on database
         $data = [
@@ -71,6 +72,9 @@ class MeetingCreateForm extends FormBase
             )['value'],
             'meeting_url_video' => $form_state->getValue('meeting_url_video'),
             'fid' => isset($picture[0]) ? $picture[0] : null,
+            'banner_fid' => isset($picture_banner[0])
+                ? $picture_banner[0]
+                : null,
             'meeting_background_colour' => $form_state->getValue(
                 'meeting_background_colour'
             ),
@@ -95,6 +99,11 @@ class MeetingCreateForm extends FormBase
         // save file as Permanent
         if (isset($picture[0])) {
             $file = File::load($picture[0]);
+            $file->setPermanent();
+            $file->save();
+        }
+        if (isset($picture_banner[0])) {
+            $file = File::load($picture_banner[0]);
             $file->setPermanent();
             $file->save();
         }

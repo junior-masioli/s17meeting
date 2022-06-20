@@ -26,6 +26,7 @@ function meeting_theme($existing, $type, $theme, $path)
         'questions' => NULL,
         'survey'=>NULL,
         'info'=>NULL,
+        'mobile'=>NULL,
       ),
       'template' => 'html--admin--meeting--edit',
       '#attached' => [
@@ -187,6 +188,11 @@ function meeting_schema()
         'default' => '',
       ),
       'fid' => array(
+        'type' => 'int',
+        'length' => 20,
+        'not null' => FALSE,
+      ),
+      'banner_fid' => array(
         'type' => 'int',
         'length' => 20,
         'not null' => FALSE,
@@ -494,6 +500,31 @@ function meeting_schema()
         'size' => 'big',
         'not null' => FALSE,
       )
+    ),
+    'primary key' => array(
+      'id',
+    ),
+  );
+
+  $schema['mobile'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'meeting_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
     ),
     'primary key' => array(
       'id',
@@ -826,6 +857,31 @@ function meeting_install()
       ),
     )
   );
+
+  $database->schema()->changeField(
+    'mobile',
+    'meeting_id',
+    'meeting_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+    ),
+    array(
+      'foreign keys' => array(
+        'meeting_id' => array(
+          'table' => 'meeting',
+          'columns' => array(
+            'id' => 'id',
+          ),
+          'on update' => 'cascade',
+          'on delete' => 'set null',
+        )
+      ),
+    )
+  );
+
 
 
 

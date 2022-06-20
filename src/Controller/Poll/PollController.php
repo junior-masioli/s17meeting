@@ -238,7 +238,7 @@ class PollController extends ControllerBase
         return $data['uuid'];
     }
 
-    public function pollParticipant($meeting_id, $poll_id)
+    public static function pollParticipant($meeting_id, $poll_id)
     {
         $conn = Database::getConnection();
         $query = $conn

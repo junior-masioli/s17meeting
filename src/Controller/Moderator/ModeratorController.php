@@ -155,7 +155,7 @@ class ModeratorController extends ControllerBase
      * @param [type] $id
      * @return void
      */
-    public function getCurrentMeeting($database, $alias, $uuid)
+    public static function getCurrentMeeting($database, $alias, $uuid)
     {
         $conn = Database::getConnection();
         $data = [];
